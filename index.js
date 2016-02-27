@@ -17,7 +17,7 @@ Xbox.prototype.powerOn = function(callback) {
   var socket = dgram.createSocket('udp4');
   socket.send(message, 0, message.length, PORT, this.ip, function(err, bytes) {
     if (err) throw err;
-      socket.close();
-      callback();
-    });
+    socket.close();
+    callback();
+  });
 }
