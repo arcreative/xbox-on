@@ -1,0 +1,34 @@
+{
+  "name": "xbox-on",
+  "version": "0.0.1",
+  "description": "Xbox One power control",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "xbox-on": "./cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arcreative/xbox-on.git"
+  },
+  "keywords": [
+    "xbox",
+    "xbox one",
+    "power control",
+    "wol",
+    "wake on lan",
+    "home automation"
+  ],
+  "author": "Adam Robertson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arcreative/xbox-on/issues"
+  },
+  "homepage": "https://github.com/arcreative/xbox-on#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "commander": "^2.9.0"
+  }
+}
