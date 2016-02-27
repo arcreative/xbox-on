@@ -25,3 +25,11 @@ var Xbox = require('xbox-on');                // Require module
 var xbox = new Xbox(ipAddress, liveDeviceId); // Create new xbox
 xbox.powerOn();                               // Issue power on command
 ```
+
+## Getting your Xbox One's IP address
+
+On your Xbox, go to Settings > Network > Network Settings > Advanced Settings
+
+## Getting your Live ID
+
+On your Xbox, go to Settings > System > Console info & updates and look under "Xbox Live device ID"
