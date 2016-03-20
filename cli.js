@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 require('colors');
 
 var assert = require('assert'),
