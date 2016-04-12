@@ -13,6 +13,7 @@ function Xbox(ip, id) {
 }
 
 Xbox.prototype.powerOn = function(callback) {
+  callback = callback || function() {};
   var message = Buffer.concat([new Buffer(POWER_PAYLOAD, 'hex'), new Buffer(this.id), new Buffer(1).fill(0)]);
   var socket = dgram.createSocket('udp4');
   socket.send(message, 0, message.length, PORT, this.ip, function(err, bytes) {
