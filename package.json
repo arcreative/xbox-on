@@ -1,6 +1,6 @@
 {
   "name": "xbox-on",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Xbox One power control",
   "main": "index.js",
   "scripts": {
