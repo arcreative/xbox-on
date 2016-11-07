@@ -7,9 +7,6 @@ var assert = require('assert'),
 
 var Xbox = require('./index');
 
-var ip,
-    liveId;
-
 program
   .usage('-i <ip_address> -l <live_device_id>')
   .usage('--ip=<ip_address> --live_device_id=<live_device_id>')
