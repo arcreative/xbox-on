@@ -17,9 +17,9 @@ Xbox.prototype.powerOn = function(callback) {
   var socket = dgram.createSocket('udp4');
 
   // Create payload
-  var powerPayload = Buffer.from('\x00' + String.fromCharCode(this.id.length) + this.id + '\x00'),
-      powerPayloadLength = Buffer.from(String.fromCharCode(powerPayload.length)),
-      powerHeader = Buffer.concat([Buffer.from('dd0200', 'hex'), powerPayloadLength, Buffer.from('0000', 'hex')]),
+  var powerPayload = new Buffer('\x00' + String.fromCharCode(this.id.length) + this.id + '\x00'),
+      powerPayloadLength = new Buffer(String.fromCharCode(powerPayload.length)),
+      powerHeader = Buffer.concat([new Buffer('dd0200', 'hex'), powerPayloadLength, new Buffer('0000', 'hex')]),
       powerPacket = Buffer.concat([powerHeader, powerPayload]);
 
   // Send
