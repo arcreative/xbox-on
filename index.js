@@ -24,7 +24,7 @@ Xbox.prototype.powerOn = function(callback) {
 
   // Send
   socket.send(powerPacket, 0, powerPacket.length, PORT, this.ip, function(err) {
-    if (err) throw err;
+    if (err) return callback(err);
     socket.close();
     callback();
   });

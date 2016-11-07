@@ -17,4 +17,6 @@ program
 assert(program.ip, 'Missing required option <ip_address>'.red);
 assert(program.live_device_id, 'Missing required option <live_device_id>'.red);
 
-(new Xbox(program.ip, program.live_device_id)).powerOn(process.exit.bind(null, 0));
+(new Xbox(program.ip, program.live_device_id)).powerOn(function(err) {
+  process.exit(err ? 1 : 0);
+});
