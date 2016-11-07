@@ -1,8 +1,6 @@
 var dgram = require('dgram');
 
-const PORT = 5050
-const PING_PAYLOAD = "dd00000a000000000000000400000002"
-const POWER_PAYLOAD = "dd02001300000010"
+const PORT = 5050;
 
 module.exports = Xbox;
 
@@ -14,16 +12,20 @@ function Xbox(ip, id) {
 
 Xbox.prototype.powerOn = function(callback) {
   callback = callback || function() {};
-  
-  // Counter some older node compatibility issues with `new Buffer(1).fill(0)`
-  var zeroBuffer = new Buffer(1);
-  zeroBuffer.write('\u0000');
-  
-  var message = Buffer.concat([new Buffer(POWER_PAYLOAD, 'hex'), new Buffer(this.id), zeroBuffer]);
+
+  // Open socket
   var socket = dgram.createSocket('udp4');
-  socket.send(message, 0, message.length, PORT, this.ip, function(err, bytes) {
+
+  // Create payload
+  var powerPayload = Buffer.from('\x00' + String.fromCharCode(this.id.length) + this.id + '\x00'),
+      powerPayloadLength = Buffer.from(String.fromCharCode(powerPayload.length)),
+      powerHeader = Buffer.concat([Buffer.from('dd0200', 'hex'), powerPayloadLength, Buffer.from('0000', 'hex')]),
+      powerPacket = Buffer.concat([powerHeader, powerPayload]);
+
+  // Send
+  socket.send(powerPacket, 0, powerPacket.length, PORT, this.ip, function(err) {
     if (err) throw err;
     socket.close();
     callback();
   });
-}
+};
