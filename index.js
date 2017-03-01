@@ -37,6 +37,7 @@ Xbox.prototype.sendOn = function(ip, id, socket, counter, timeId, callback) {
       clearInterval(timeId);
       return callback(err);
     } else if(counter == 5){
+      clearInterval(timeId);
       return callback();
     }
   });
