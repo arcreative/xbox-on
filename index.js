@@ -10,7 +10,33 @@ function Xbox(ip, id) {
   return this;
 }
 
-Xbox.prototype.powerOn = function(callback) {
+Xbox.prototype.powerOn = function(options, callback) {
+  options = options || {};
+  callback = callback || function() {};
+
+  if (typeof options === 'function') {
+    callback = options;
+    options = {};
+  }
+
+  // Retry up to options.tries times
+  for (var i = 0; i < (options.tries || 5); i++) {
+    setTimeout((function(xbox, i) {
+      return function() {
+        xbox.sendOn();
+
+        // If wait was specified, callback after last try, otherwise, callback after first try
+        if (options.waitForCallback && i + 1 === options.tries) {
+          callback();
+        } else if (!options.waitForCallback && i === 0) {
+          callback();
+        }
+      }
+    })(this, i), i * (options.delay || 500));
+  }
+};
+
+Xbox.prototype.sendOn = function(callback) {
   callback = callback || function() {};
 
   // Open socket
