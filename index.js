@@ -1,6 +1,8 @@
 var dgram = require('dgram');
 
 const PORT = 5050;
+const DEFAULT_TRIES = 5;
+const DEFAULT_DELAY = 1000;
 
 module.exports = Xbox;
 
@@ -20,7 +22,7 @@ Xbox.prototype.powerOn = function(options, callback) {
   }
 
   // Retry up to options.tries times
-  for (var i = 0; i < (options.tries || 5); i++) {
+  for (var i = 0; i < (options.tries || DEFAULT_TRIES); i++) {
     setTimeout((function(xbox, i) {
       return function() {
         xbox.sendOn();
@@ -32,7 +34,7 @@ Xbox.prototype.powerOn = function(options, callback) {
           callback();
         }
       }
-    })(this, i), i * (options.delay || 500));
+    })(this, i), i * (options.delay || DEFAULT_DELAY));
   }
 };
 

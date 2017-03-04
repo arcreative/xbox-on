@@ -29,7 +29,7 @@ var xbox = new Xbox(ipAddress, liveDeviceId); // Create new xbox
 // Optional, defaults shown
 var options = {
     tries: 5,
-    delay: 500,
+    delay: 1000,
     waitForCallback: false
 };
 
