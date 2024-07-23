@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/arcreative/xbox-on#readme",
   "dependencies": {
-    "colors": "^1.1.2",
+    "colors": "=1.4.0",
     "commander": "^2.9.0"
   }
 }
